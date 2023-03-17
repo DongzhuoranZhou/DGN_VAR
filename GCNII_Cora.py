@@ -50,8 +50,8 @@ def set_seed(seed):
 seeds = [100]
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--layer', type=int, default=30, help='Number of layers.')
-parser.add_argument('--type_norm', type=str, default="group", help='{None, batch, group, pair}')
+parser.add_argument('--layer', type=int, default=10, help='Number of layers.')
+parser.add_argument('--type_norm', type=str, default="None", help='{None, batch, group, pair}')
 parser.add_argument('--miss_rate', type=float, default=1.)
 args = parser.parse_args()
 
@@ -85,6 +85,8 @@ else:
 type_norm = args.type_norm
 num_features = 1433
 num_classes = 7
+# num_features = 3703
+# num_classes = 6
 #####################
 
 GConv = GCNIIdenseConv
@@ -169,7 +171,9 @@ for seed in seeds:
     test_acc = 0
     bad_counter = 0
     best_epoch = 0
-    for epoch in range(1, 1000):
+    epochs = 1000
+
+    for epoch in range(1, epochs):
         loss_tra = train()
         loss_val,acc_val_tmp, acc_test_tmp = test()
         if loss_val < best_val_loss:
