@@ -50,12 +50,12 @@ def set_seed(seed):
 seeds = [100]
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--layer', type=int, default=30, help='Number of layers.')
+parser.add_argument('--layer', type=int, default=10, help='Number of layers.')
 parser.add_argument('--type_norm', type=str, default="None", help='{None, batch, group, pair}')
 parser.add_argument('--miss_rate', type=float, default=1.)
 args = parser.parse_args()
 
-dataset = 'Citeseer'
+dataset = 'Pubmed'
 data = load_data(dataset)
 if args.miss_rate > 0.:
     data.x = remove_feature(data, args.miss_rate)
@@ -85,8 +85,8 @@ else:
 type_norm = args.type_norm
 # num_features = 1433
 # num_classes = 7
-num_features = 3703
-num_classes = 6
+num_features = 500
+num_classes = 5
 #####################
 
 GConv = GCNIIdenseConv

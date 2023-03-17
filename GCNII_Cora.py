@@ -187,7 +187,8 @@ for seed in seeds:
             log = 'Epoch: {:03d}, Train loss: {:.4f}, Val loss: {:.4f}, Test acc: {:.4f}'
             print(log.format(epoch, loss_tra, loss_val, test_acc))
         if bad_counter == patience:
-            break
+            # break
+            pass
     log = 'best Epoch: {:03d}, Val loss: {:.4f}, Test acc: {:.4f}'
     acc_test_list.append(test_acc)
     print(log.format(best_epoch, best_val_loss, test_acc))
